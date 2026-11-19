@@ -16,7 +16,14 @@ Practical Application 2 uses advertised used-car prices to help dealership appra
 
 The notebook follows all six CRISP-DM stages. It audits 426,880 course-supplied Kaggle listings and retains 322,274 after price and model-year screening and duplicate removal. Training uses 257,202 listings across three group-disjoint validation folds, with a separate 65,072-listing holdout. VIN serves as a grouping key and is excluded from predictors.
 
-The benchmark compares a median baseline, least squares, Ridge, and histogram gradient boosting. Grid search selects settings by validation MAE. The notebook shows the complete grid, holdout metrics, error by price band, permutation importance, and adjusted Ridge coefficients in dealer-friendly units.
+| Model | Why it was included | Holdout MAE |
+|---|---|---:|
+| Median baseline | Measures the error from quoting one training median price for every vehicle. | $11,293 |
+| Ordinary least squares | Tests a simple additive relationship between vehicle attributes and price. | $4,796 |
+| Ridge regression | Tests whether shrinking linear coefficients improves accuracy and provides adjusted dollar comparisons. | $4,794 |
+| Histogram gradient boosting | Captures nonlinear relationships and interactions. It had the lowest cross-validation error. | $3,249 |
+
+Grid search compared three Ridge penalties and four boosting configurations. The winning model used **300 boosting iterations and up to 63 leaves per tree**. The notebook documents preprocessing, the full tuning grid, holdout metrics, price-band errors, permutation importance, and Ridge coefficients.
 
 ## Visual evidence
 
